@@ -1,0 +1,47 @@
+{
+  "name": "deal-notes-graph",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prototype that extracts CRM facts from synthetic notes and shows each fact beside its source sentence.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "api": "tsx server/standalone.ts",
+    "evaluate": "tsx scripts/evaluate.ts",
+    "seed": "tsx scripts/seed-db.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@apollo/server": "5.5.1",
+    "@as-integrations/next": "4.1.0",
+    "dataloader": "2.2.3",
+    "graphql": "16.14.2",
+    "next": "16.4.0",
+    "pg": "8.23.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.5",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "10.12.0",
+    "eslint-config-prettier": "10.1.8",
+    "prettier": "3.9.10",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.2",
+    "vitest": "5.0.4"
+  }
+}
