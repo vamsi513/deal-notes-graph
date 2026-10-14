@@ -1,0 +1,897 @@
+{
+  "n01": {
+    "noteId": "n01",
+    "tricky": "amount change",
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Imani Dorsey",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Harbor Lane Logistics",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "DISCOVERY",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "32000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the revised quote on Thursday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n02": {
+    "noteId": "n02",
+    "tricky": "stage reversed",
+    "facts": [
+      {
+        "field": "COMPANY",
+        "value": "Pinegate Systems",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "DISCOVERY",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "CONTACT",
+        "value": "Teodor Vance",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "check in again in three weeks",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n03": {
+    "noteId": "n03",
+    "tricky": "next step negated",
+    "facts": [
+      {
+        "field": "COMPANY",
+        "value": "Verdant Mills",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "CLOSED_WON",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "CONTACT",
+        "value": "Nadia Brightman",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "58500.00 USD",
+        "sourceSentenceIndex": 2
+      }
+    ]
+  },
+  "n04": {
+    "noteId": "n04",
+    "tricky": "two contacts",
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Caleb Renner",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "CONTACT",
+        "value": "Soraya Lind",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Brightwater Analytics",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "QUALIFIED",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "24000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the pricing sheet on Monday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n05": {
+    "noteId": "n05",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Marcus Otway",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Kestrel Works",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROPOSAL",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "75000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "walk through the statement of work on Wednesday",
+        "sourceSentenceIndex": 5
+      }
+    ]
+  },
+  "n06": {
+    "noteId": "n06",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Elina Park",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Northfold Labs",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "DISCOVERY",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "to map their current workflow",
+        "sourceSentenceIndex": 2
+      }
+    ]
+  },
+  "n07": {
+    "noteId": "n07",
+    "tricky": "amount change",
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Dmitri Falk",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Silverpine Holdings",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "96000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "STAGE",
+        "value": "NEGOTIATION",
+        "sourceSentenceIndex": 3
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the revised agreement tomorrow",
+        "sourceSentenceIndex": 4
+      }
+    ]
+  },
+  "n08": {
+    "noteId": "n08",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Rosalind Mbeki",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Tallow Creek Foods",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROPOSAL",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "18750.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "follow up after their board meeting",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n09": {
+    "noteId": "n09",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Javier Sotelo",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Ashgrove Technologies",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "QUALIFIED",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "42000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the renewal paperwork next week",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n10": {
+    "noteId": "n10",
+    "tricky": "stage reversed",
+    "facts": [
+      {
+        "field": "COMPANY",
+        "value": "Coldspur Freight",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "QUALIFIED",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "CONTACT",
+        "value": "Hana Okafor",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "book that session for the first week of next month",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n11": {
+    "noteId": "n11",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Felix Brannon",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Fernlea Health",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "NEGOTIATION",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "64000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send three references on Friday",
+        "sourceSentenceIndex": 5
+      }
+    ]
+  },
+  "n12": {
+    "noteId": "n12",
+    "tricky": "next step negated",
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Noor Haddad",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Oxbow Instruments",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROPOSAL",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "31200.00 USD",
+        "sourceSentenceIndex": 1
+      }
+    ]
+  },
+  "n13": {
+    "noteId": "n13",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Gideon Pryce",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Quillon Media",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROSPECT",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send an intro deck this week",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n14": {
+    "noteId": "n14",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Liesel Vogt",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Redmark Industries",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "QUALIFIED",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "55000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "put a proposal together by the end of the week",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n15": {
+    "noteId": "n15",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Amara Nwosu",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Saltwind Energy",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROPOSAL",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "88000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the pricing sheet tomorrow",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n16": {
+    "noteId": "n16",
+    "tricky": "two contacts",
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Tobias Kerr",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "CONTACT",
+        "value": "Mira Castellan",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Thistledown Studios",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "DISCOVERY",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send a short summary after this call",
+        "sourceSentenceIndex": 5
+      }
+    ]
+  },
+  "n17": {
+    "noteId": "n17",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Ewan Draycott",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Underhill Supply",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "CLOSED_LOST",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "log the loss and note the reason",
+        "sourceSentenceIndex": 2
+      }
+    ]
+  },
+  "n18": {
+    "noteId": "n18",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Priya Raman",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Wrenfield Networks",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "NEGOTIATION",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "110000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the revised clause to their legal team on Monday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n19": {
+    "noteId": "n19",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Sven Halvorsen",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Yarrow Dynamics",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "QUALIFIED",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "27500.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the onboarding plan this afternoon",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n20": {
+    "noteId": "n20",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Delphine Aubert",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Bellmont Ventures",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROSPECT",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "set up a discovery call next week",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n21": {
+    "noteId": "n21",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Omar Tazi",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Cindermoor Group",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "CLOSED_WON",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "46000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "schedule the kickoff for next Tuesday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n22": {
+    "noteId": "n22",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Kiara Mensah",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Larkspur Collective",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "DISCOVERY",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "12500.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send a scoped plan on Thursday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n23": {
+    "noteId": "n23",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Bram Visser",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Harbor Lane Logistics",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROPOSAL",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "36000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the second quote on Monday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n24": {
+    "noteId": "n24",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Lucia Ferraro",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Pinegate Systems",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "QUALIFIED",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "53000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "answer the security questionnaire by Friday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n25": {
+    "noteId": "n25",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Nikhil Rao",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Marren Robotics",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "NEGOTIATION",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "21000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send the support addendum tomorrow",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n26": {
+    "noteId": "n26",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Aisha Jalloh",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Dovetail Partners",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROPOSAL",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "240000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send both options on Wednesday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n27": {
+    "noteId": "n27",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Yusuf Demir",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Brightwater Analytics",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "NEGOTIATION",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "67500.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send a redline on the notice period today",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n28": {
+    "noteId": "n28",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Clara Boyd",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Verdant Mills",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "PROSPECT",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "AMOUNT",
+        "value": "15000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send a one page overview this week",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  },
+  "n29": {
+    "noteId": "n29",
+    "tricky": null,
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Reuben Falk",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Fernlea Health",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "CLOSED_LOST",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "log it and set a reminder for next year",
+        "sourceSentenceIndex": 2
+      }
+    ]
+  },
+  "n30": {
+    "noteId": "n30",
+    "tricky": "two contacts",
+    "facts": [
+      {
+        "field": "CONTACT",
+        "value": "Sana Qureshi",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "CONTACT",
+        "value": "Milo Hartwell",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "COMPANY",
+        "value": "Oxbow Instruments",
+        "sourceSentenceIndex": 0
+      },
+      {
+        "field": "STAGE",
+        "value": "NEGOTIATION",
+        "sourceSentenceIndex": 1
+      },
+      {
+        "field": "AMOUNT",
+        "value": "58000.00 USD",
+        "sourceSentenceIndex": 2
+      },
+      {
+        "field": "NEXT_STEP",
+        "value": "send a one year option on Friday",
+        "sourceSentenceIndex": 3
+      }
+    ]
+  }
+}
