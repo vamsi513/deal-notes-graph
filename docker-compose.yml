@@ -12,7 +12,9 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - db-data:/var/lib/postgresql/data
+      # PostgreSQL 18 images expect a single mount here, not at data/, so that a future
+      # major upgrade can use pg_upgrade without crossing a mount boundary.
+      - db-data:/var/lib/postgresql
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U deal_notes -d deal_notes']
       interval: 3s
