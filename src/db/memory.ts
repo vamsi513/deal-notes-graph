@@ -69,9 +69,7 @@ export class MemoryRepository implements Repository {
 
   async dealsByNoteIds(ids: readonly string[]): Promise<Array<Deal | null>> {
     this.count('dealsByNoteIds');
-    return ids.map(
-      (id) => [...this.deals.values()].find((deal) => deal.noteId === id) ?? null,
-    );
+    return ids.map((id) => [...this.deals.values()].find((deal) => deal.noteId === id) ?? null);
   }
 
   async listDeals(stage: DealStage | null): Promise<Deal[]> {

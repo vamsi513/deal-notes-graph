@@ -1,7 +1,12 @@
 import type { KeyEntry, NoteRecord } from '../data/datasets';
 import { applyGrounding } from '../extraction/grounding';
 import { normalize } from '../extraction/sentences';
-import { FACT_FIELDS, type ExtractedFact, type Extractor, type FactField } from '../extraction/types';
+import {
+  FACT_FIELDS,
+  type ExtractedFact,
+  type Extractor,
+  type FactField,
+} from '../extraction/types';
 
 export interface Failure {
   kind: 'missed' | 'wrong';

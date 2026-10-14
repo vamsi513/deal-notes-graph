@@ -1,13 +1,5 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 import { isFactField, type FactField } from '../extraction/types';
-
-const here = dirname(fileURLToPath(import.meta.url));
-export const DATA_DIR = resolve(here, '../../data');
-export const NOTES_DIR = join(DATA_DIR, 'notes');
-export const KEY_PATH = join(DATA_DIR, 'key.json');
+import { RAW_KEY, RAW_NOTES } from './manifest';
 
 export type NoteSource = 'EMAIL' | 'MEETING';
 
@@ -31,10 +23,6 @@ export interface KeyEntry {
   facts: KeyFact[];
 }
 
-function readJson(path: string): unknown {
-  return JSON.parse(readFileSync(path, 'utf8'));
-}
-
 export function parseNote(payload: unknown, origin = 'note'): NoteRecord {
   if (typeof payload !== 'object' || payload === null) {
     throw new Error(`${origin} is not an object`);
@@ -53,11 +41,11 @@ export function parseNote(payload: unknown, origin = 'note'): NoteRecord {
   return { id, source, subject, receivedAt, body };
 }
 
-export function loadNotes(directory = NOTES_DIR): NoteRecord[] {
-  return readdirSync(directory)
-    .filter((name) => name.endsWith('.json'))
-    .sort()
-    .map((name) => parseNote(readJson(join(directory, name)), name));
+/** The authored notes, read from the static manifest. No filesystem access. */
+export function loadNotes(): NoteRecord[] {
+  return RAW_NOTES.map((payload, position) => parseNote(payload, `note ${position}`)).sort((a, b) =>
+    a.id.localeCompare(b.id),
+  );
 }
 
 export function parseKey(payload: unknown): Record<string, KeyEntry> {
@@ -98,6 +86,7 @@ export function parseKey(payload: unknown): Record<string, KeyEntry> {
   return out;
 }
 
-export function loadKey(path = KEY_PATH): Record<string, KeyEntry> {
-  return parseKey(readJson(path));
+/** The authored answer key, read from the static manifest. No filesystem access. */
+export function loadKey(): Record<string, KeyEntry> {
+  return parseKey(RAW_KEY);
 }

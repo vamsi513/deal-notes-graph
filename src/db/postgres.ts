@@ -191,7 +191,14 @@ async function writeIngest(client: PoolClient, payload: IngestPayload): Promise<
      VALUES ($1, $2, $3, $4, $5, $6::jsonb)
      ON CONFLICT (id) DO UPDATE SET subject = EXCLUDED.subject, body = EXCLUDED.body,
        sentences = EXCLUDED.sentences`,
-    [note.id, note.source, note.subject, note.receivedAt, note.body, JSON.stringify(note.sentences)],
+    [
+      note.id,
+      note.source,
+      note.subject,
+      note.receivedAt,
+      note.body,
+      JSON.stringify(note.sentences),
+    ],
   );
   for (const contact of contacts) {
     await client.query(
