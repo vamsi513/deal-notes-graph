@@ -1,6 +1,8 @@
 # deal-notes-graph
 
-**Live demo:** PASTE_THE_DEPLOYMENT_URL_HERE
+**Live demo:** https://deal-notes-graph.vercel.app
+
+It runs with no database and no API keys, on the 30 synthetic notes in this repository.
 
 A small web app that reads synthetic customer emails and meeting notes, pulls out structured CRM
 facts, and shows every fact next to the sentence it came from. It is a prototype and a
