@@ -1,5 +1,5 @@
 import { splitSentences } from './sentences';
-import type { ExtractedFact, ExtractionInput, ExtractionResult, Extractor } from './types';
+import type { EnvLike, ExtractedFact, ExtractionInput, ExtractionResult, Extractor } from './types';
 import { isDealStage, isFactField } from './types';
 
 export const LLM_SWITCH_ENV = 'DEAL_NOTES_LLM_EXTRACTOR';
@@ -30,7 +30,7 @@ export class LlmExtractor implements Extractor {
   private readonly apiKey: string;
   private readonly timeoutMs: number;
 
-  constructor(env: NodeJS.ProcessEnv = process.env, timeoutMs = 30_000) {
+  constructor(env: EnvLike = process.env, timeoutMs = 30_000) {
     this.url = env[LLM_URL_ENV] ?? '';
     this.model = env[LLM_MODEL_ENV] ?? '';
     this.apiKey = env[LLM_KEY_ENV] ?? '';

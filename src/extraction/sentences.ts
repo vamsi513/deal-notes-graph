@@ -38,10 +38,13 @@ export function normalize(text: string): string {
   return text.toLowerCase().replace(WHITESPACE, ' ').trim();
 }
 
-/** Clause boundaries, used to keep a negation from leaking across a sentence. */
+/**
+ * Clause boundaries, used to keep a negation from leaking across a sentence. A comma between
+ * two digits is a thousands separator, not a boundary, so $40,000 stays in one clause.
+ */
 export function splitClauses(sentence: string): string[] {
   return sentence
-    .split(/[,;:]|\bbut\b|\bhowever\b|\balthough\b|\bso\b/i)
+    .split(/(?<![0-9]),(?![0-9])|[;:]|\bbut\b|\bhowever\b|\balthough\b|\bso\b/i)
     .map((clause) => clause.trim())
     .filter((clause) => clause !== '');
 }

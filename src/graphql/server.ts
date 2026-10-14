@@ -4,7 +4,7 @@ import { seedMemoryRepository } from '../db/memory';
 import { PostgresRepository } from '../db/postgres';
 import type { Repository } from '../db/types';
 import { selectExtractor } from '../extraction';
-import type { Extractor } from '../extraction/types';
+import type { EnvLike, Extractor } from '../extraction/types';
 import type { GraphQLContext } from './context';
 import { resolvers } from './resolvers';
 import { typeDefs } from './schema';
@@ -20,7 +20,7 @@ let repositoryPromise: Promise<Repository> | null = null;
  * falls back to the in memory repository seeded from data/, so a clean clone runs with no
  * database and the test suite needs nothing external.
  */
-export function resolveRepository(env: NodeJS.ProcessEnv = process.env): Promise<Repository> {
+export function resolveRepository(env: EnvLike = process.env): Promise<Repository> {
   if (repositoryPromise === null) {
     const url = env.DATABASE_URL;
     repositoryPromise =
@@ -42,13 +42,13 @@ export function resolveRepository(env: NodeJS.ProcessEnv = process.env): Promise
   return repositoryPromise;
 }
 
-export function describeStore(env: NodeJS.ProcessEnv = process.env): string {
+export function describeStore(env: EnvLike = process.env): string {
   const url = env.DATABASE_URL;
   return url === undefined || url === ''
     ? 'in memory repository seeded from data/'
     : 'postgresql repository';
 }
 
-export function resolveExtractor(env: NodeJS.ProcessEnv = process.env): Extractor {
+export function resolveExtractor(env: EnvLike = process.env): Extractor {
   return selectExtractor(env);
 }

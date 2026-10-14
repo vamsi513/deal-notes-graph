@@ -1,0 +1,79 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # No DATABASE_URL and no extractor credential, so the suite runs against the in memory
+      # repository and the deterministic extractor with no network access.
+      - name: Tests
+        run: npm test
+
+      - name: Build the web app
+        run: npm run build
+
+      - name: Confirm the published results match the current code
+        run: |
+          npm run evaluate -- --out results/RESULTS.md
+          git diff --exit-code results/RESULTS.md
+
+  compose:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Start PostgreSQL and the API
+        run: docker compose up -d --build
+
+      - name: Wait for the API to report healthy
+        run: |
+          for attempt in $(seq 1 40); do
+            if curl -fsS http://localhost:4000/health; then
+              echo
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "the api did not come up"
+          docker compose logs
+          exit 1
+
+      - name: Query the GraphQL endpoint
+        run: |
+          curl -fsS http://localhost:4000/graphql \
+            -H 'content-type: application/json' \
+            -d '{"query":"{ noteCount deals(stage: CLOSED_WON) { id stage } }"}' \
+            | tee /tmp/response.json
+          grep -q '"noteCount":30' /tmp/response.json
+
+      - name: Read the metrics endpoint
+        run: curl -fsS http://localhost:4000/metrics
+
+      - name: Stop the stack
+        if: always()
+        run: docker compose down -v

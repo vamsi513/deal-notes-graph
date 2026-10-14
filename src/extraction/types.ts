@@ -1,3 +1,6 @@
+/** Just the variables a caller cares about, rather than the whole process environment. */
+export type EnvLike = Record<string, string | undefined>;
+
 export const DEAL_STAGES = [
   'PROSPECT',
   'DISCOVERY',
