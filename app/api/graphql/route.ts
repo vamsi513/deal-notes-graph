@@ -15,6 +15,7 @@ import { createApolloServer, resolveExtractor, resolveRepository } from '@/src/g
 import { REQUEST_ID_HEADER, createLogger, requestIdFrom } from '@/src/observability/logger';
 import { metrics } from '@/src/observability/metrics';
 
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const server = createApolloServer();

@@ -2,6 +2,7 @@ import { metrics } from '@/src/observability/metrics';
 import { describeStore } from '@/src/graphql/server';
 import { describeExtractorChoice } from '@/src/extraction';
 
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET(): Promise<Response> {

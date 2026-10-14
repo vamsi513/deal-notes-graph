@@ -1,5 +1,7 @@
 # deal-notes-graph
 
+**Live demo:** PASTE_THE_DEPLOYMENT_URL_HERE
+
 A small web app that reads synthetic customer emails and meeting notes, pulls out structured CRM
 facts, and shows every fact next to the sentence it came from. It is a prototype and a
 reliability study, **not a production CRM**. Nothing here has been used with real customer data,
@@ -22,6 +24,30 @@ an evaluation script scores the extractor against an answer key written by hand.
 | Extraction | One module, a pluggable extractor interface, a deterministic rule based extractor by default |
 | Tests      | Vitest, 136 tests, no network and no API key                                                 |
 | Local run  | Docker Compose for PostgreSQL and the API                                                    |
+
+## Demo mode
+
+The deployed demo runs with **no database and no API keys**. It loads the 30 sample notes and
+the answer key from files in this repository, seeds an in memory store at startup, and uses the
+deterministic rule based extractor. The optional model extractor cannot run in demo mode at all:
+the selection function refuses it whatever the environment says, so a public deployment has no
+path to an external endpoint and nothing here costs anything to serve.
+
+Demo mode is on whenever `DATABASE_URL` is unset, and can be forced either way with
+`DEAL_NOTES_DEMO_MODE=on` or `off`. Setting `DATABASE_URL` turns it off and gives the full
+PostgreSQL behaviour, which is what Docker Compose runs locally.
+
+**Nothing a visitor submits is kept.** The `ingestNote` mutation still runs extraction and
+returns what it found, so the schema is demonstrably real, but in demo mode the result is handed
+back and dropped: it never reaches the store, the note list or another visitor. No note text, no
+subject, no caller supplied id and no extracted value is ever written to a log line; the logs
+carry counts, timings and a request id only. A test asserts each of those by searching every log
+line for the text it submitted.
+
+Because the GraphQL endpoint is public, it has ceilings: queries may nest 8 levels and select
+300 fields, enforced as validation rules, and a request body is capped at 16 KB, checked against
+the declared content length first and then against the measured bytes. Past any of those the
+request is refused, with 413 for an oversized body.
 
 ## How to run
 
@@ -288,10 +314,23 @@ no aggregation across replicas.
 
 ## Deploying
 
-The web app and the GraphQL route are one Next.js application, so it deploys to Vercel as is,
-with `DATABASE_URL` pointing at a PostgreSQL instance. Every page and route is dynamic, so a
-build needs no database. **It has not been deployed.** Docker Compose exists for local use, not
-as a production topology.
+The web app and the GraphQL endpoint are one Next.js application, so one deploy gives one URL.
+Every page and route is dynamic, so a build needs no database, and the demo needs no environment
+variables at all.
+
+| Vercel setting        | Value                                      |
+| --------------------- | ------------------------------------------ |
+| Framework preset      | Next.js                                    |
+| Root directory        | `./`                                       |
+| Build command         | `next build` (the default)                 |
+| Install command       | `npm install` (the default)                |
+| Output directory      | leave blank, the Next.js preset handles it |
+| Node version          | 24                                         |
+| Environment variables | none                                       |
+
+Set `DATABASE_URL` only if you want the full PostgreSQL behaviour rather than the demo, in
+which case the app stores ingested notes and leaves demo mode on its own. Docker Compose exists
+for local development, not as a production topology.
 
 ## Limitations
 
@@ -321,7 +360,13 @@ as a production topology.
 - **One deal per note.** Deals are derived per note rather than tracked over time, so the board
   shows the state each note implies on its own. A real pipeline would merge notes per company
   and keep history.
-- **No authentication, no access control, no multi tenancy, no rate limiting.** The API is open
-  and the data is public sample data. It is not a product.
+- **No authentication, no access control, no multi tenancy.** The API is open and the data is
+  public sample data. The depth, selection and body limits are there so a public endpoint cannot
+  be made to do unbounded work from a short request; they are not a substitute for auth, and
+  there is no per caller rate limiting. It is not a product.
+- **The demo store is per instance and in memory.** Each serverless instance seeds its own copy
+  of the 30 sample notes on cold start. That is fine for read only sample data and is the reason
+  a submitted note cannot leak to another visitor, but it means the metrics counters are per
+  instance and reset constantly.
 - **Not a production CRM.** No claim is made about scale, users, throughput or fitness for any
   real use. The metrics are in process counters from a single machine, not evidence about load.
