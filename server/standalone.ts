@@ -5,6 +5,12 @@ import { HeaderMap } from '@apollo/server';
 
 import { createContext } from '../src/graphql/context';
 import {
+  BODY_TOO_LARGE_MESSAGE,
+  declaredLengthWithinLimit,
+  measureBody,
+} from '../src/graphql/limits';
+import { describeMode, persistsIngestedNotes } from '../src/config';
+import {
   createApolloServer,
   describeStore,
   resolveExtractor,
@@ -43,7 +49,7 @@ async function main(): Promise<void> {
 
     try {
       if (url.pathname === '/health') {
-        send(response, 200, { status: 'ok', store: describeStore() });
+        send(response, 200, { status: 'ok', store: describeStore(), mode: describeMode() });
       } else if (url.pathname === '/metrics') {
         send(response, 200, metrics.snapshot());
       } else if (url.pathname === '/graphql') {
@@ -72,12 +78,20 @@ async function main(): Promise<void> {
     url: URL,
     requestId: string,
   ): Promise<void> {
+    if (!declaredLengthWithinLimit(headerValue(request, 'content-length'))) {
+      send(response, 413, { errors: [{ message: BODY_TOO_LARGE_MESSAGE }] });
+      return;
+    }
     const headers = new HeaderMap();
     for (const [name, value] of Object.entries(request.headers)) {
       if (typeof value === 'string') headers.set(name, value);
       else if (Array.isArray(value)) headers.set(name, value.join(', '));
     }
     const raw = await readBody(request);
+    if (!measureBody(raw).withinLimit) {
+      send(response, 413, { errors: [{ message: BODY_TOO_LARGE_MESSAGE }] });
+      return;
+    }
     const result = await apollo.executeHTTPGraphQLRequest({
       httpGraphQLRequest: {
         method: request.method ?? 'POST',
@@ -85,7 +99,14 @@ async function main(): Promise<void> {
         search: url.search,
         body: raw === '' ? undefined : JSON.parse(raw),
       },
-      context: async () => createContext({ repository, extractor, requestId, metrics }),
+      context: async () =>
+        createContext({
+          repository,
+          extractor,
+          requestId,
+          metrics,
+          persistIngestedNotes: persistsIngestedNotes(),
+        }),
     });
     for (const [name, value] of result.headers) response.setHeader(name, value);
     response.statusCode = result.status ?? 200;
@@ -104,6 +125,7 @@ async function main(): Promise<void> {
       graphql: `http://localhost:${PORT}/graphql`,
       metrics: `http://localhost:${PORT}/metrics`,
       store: describeStore(),
+      mode: describeMode(),
       extractor: describeExtractorChoice(),
     });
   });

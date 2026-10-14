@@ -21,10 +21,16 @@ export interface Harness {
   stop: () => Promise<void>;
 }
 
+export interface HarnessOptions {
+  extractor?: Extractor;
+  /** Defaults to true, the full mode behaviour. Pass false to exercise demo mode. */
+  persistIngestedNotes?: boolean;
+}
+
 /** A server over a seeded in memory repository. Nothing here touches a network or a database. */
-export async function createHarness(
-  extractor: Extractor = new RuleBasedExtractor(),
-): Promise<Harness> {
+export async function createHarness(options: HarnessOptions = {}): Promise<Harness> {
+  const extractor = options.extractor ?? new RuleBasedExtractor();
+  const persistIngestedNotes = options.persistIngestedNotes ?? true;
   const repository = await seedMemoryRepository(loadNotes());
   const metrics = new Metrics();
   const logs: LogRecord[] = [];
@@ -40,6 +46,7 @@ export async function createHarness(
       metrics,
       logSink: (record) => logs.push(record),
       newNoteId: () => `generated-${(counter += 1)}`,
+      persistIngestedNotes,
     });
 
   async function run<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {

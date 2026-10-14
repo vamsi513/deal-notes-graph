@@ -192,22 +192,27 @@ describe('Mutation.ingestNote', () => {
     expect(harness.metrics.snapshot().extraction.count).toBe(before + 1);
   });
 
-  it('writes one structured log line carrying the request id', async () => {
+  it('writes one structured log line of counts only, with no note text in it', async () => {
     harness.logs.length = 0;
+    const body = 'Oxbow Instruments is in proposal at $5,000.';
     await harness.run(
       `mutation ($input: IngestNoteInput!) { ingestNote(input: $input) { note { id } } }`,
       {
-        input: {
-          id: 'ingested-log',
-          source: 'EMAIL',
-          subject: 'Logging',
-          body: 'Oxbow Instruments is in proposal at $5,000.',
-        },
+        input: { id: 'ingested-log', source: 'EMAIL', subject: 'Secret subject', body },
       },
     );
     const line = harness.logs.find((record) => record.message === 'note ingested');
     expect(line?.requestId).toBe('test-request');
-    expect(line?.noteId).toBe('ingested-log');
+    expect(line?.factCount).toBeGreaterThan(0);
+    expect(line?.sentenceCount).toBe(1);
+
+    // Nothing a caller supplied may appear anywhere in any log line: not the body, not the
+    // subject, not the id they chose, and not an extracted value taken from their text.
+    const everything = JSON.stringify(harness.logs);
+    expect(everything).not.toContain(body);
+    expect(everything).not.toContain('Secret subject');
+    expect(everything).not.toContain('ingested-log');
+    expect(everything).not.toContain('Oxbow Instruments');
   });
 
   it('rejects an empty body', async () => {

@@ -5,6 +5,7 @@ import { createLogger, type LogSink } from '../observability/logger';
 import type { Metrics } from '../observability/metrics';
 import { metrics as sharedMetrics } from '../observability/metrics';
 import { createLoaders, type Loaders } from './loaders';
+import { persistsIngestedNotes } from '../config';
 
 export interface GraphQLContext {
   repository: Repository;
@@ -13,6 +14,8 @@ export interface GraphQLContext {
   metrics: Metrics;
   extractor: Extractor;
   newNoteId: () => string;
+  /** False in demo mode, where a note a visitor submits is extracted but never stored. */
+  persistIngestedNotes: boolean;
 }
 
 export interface ContextOptions {
@@ -22,6 +25,7 @@ export interface ContextOptions {
   metrics?: Metrics;
   logSink?: LogSink;
   newNoteId?: () => string;
+  persistIngestedNotes?: boolean;
 }
 
 export function createContext(options: ContextOptions): GraphQLContext {
@@ -32,5 +36,6 @@ export function createContext(options: ContextOptions): GraphQLContext {
     metrics: options.metrics ?? sharedMetrics,
     extractor: options.extractor,
     newNoteId: options.newNoteId ?? (() => `note-${Math.random().toString(36).slice(2, 10)}`),
+    persistIngestedNotes: options.persistIngestedNotes ?? persistsIngestedNotes(),
   };
 }

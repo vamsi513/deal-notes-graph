@@ -96,20 +96,28 @@ export const resolvers = {
       };
       const facts = toStoredFacts(id, applyGrounding(extraction.facts, extraction.sentences));
       const derived = deriveEntities(note, facts);
-      await context.repository.ingest({ note, facts, ...derived });
+      if (context.persistIngestedNotes) {
+        await context.repository.ingest({ note, facts, ...derived });
+        context.loaders.note.clear(id).prime(id, note);
+        context.loaders.factsByNote.clear(id).prime(id, facts);
+        context.loaders.dealByNote.clear(id);
+      } else {
+        // Demo mode. The result is returned to the caller and then dropped: nothing a visitor
+        // submits reaches the store, the note list or another visitor.
+        context.loaders.note.prime(id, note);
+        context.loaders.factsByNote.prime(id, facts);
+      }
 
       const ungroundedCount = facts.filter((fact) => !fact.grounded).length;
+      // Counts only. No note text, no subject, no extracted value is ever written to a log.
       context.logger.info('note ingested', {
-        noteId: id,
+        stored: context.persistIngestedNotes,
         extractor: extraction.extractorName,
+        sentenceCount: extraction.sentences.length,
         factCount: facts.length,
         ungroundedCount,
         extractionMs: Math.round(extractionMs * 1000) / 1000,
       });
-
-      context.loaders.note.clear(id).prime(id, note);
-      context.loaders.factsByNote.clear(id).prime(id, facts);
-      context.loaders.dealByNote.clear(id);
 
       return {
         note,

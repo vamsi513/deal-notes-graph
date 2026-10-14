@@ -1,16 +1,19 @@
 import { ApolloServer } from '@apollo/server';
 
 import { seedMemoryRepository } from '../db/memory';
-import { PostgresRepository } from '../db/postgres';
 import type { Repository } from '../db/types';
 import { selectExtractor } from '../extraction';
 import type { EnvLike, Extractor } from '../extraction/types';
 import type { GraphQLContext } from './context';
+import { validationRules } from './limits';
 import { resolvers } from './resolvers';
 import { typeDefs } from './schema';
+import { isDemoMode } from '../config';
 
 export function createApolloServer(): ApolloServer<GraphQLContext> {
-  return new ApolloServer<GraphQLContext>({ typeDefs, resolvers });
+  // The endpoint is public in the deployed demo, so depth and selection ceilings apply to
+  // every request rather than being a deployment time choice.
+  return new ApolloServer<GraphQLContext>({ typeDefs, resolvers, validationRules });
 }
 
 let repositoryPromise: Promise<Repository> | null = null;
@@ -27,6 +30,8 @@ export function resolveRepository(env: EnvLike = process.env): Promise<Repositor
       url === undefined || url === ''
         ? seedMemoryRepository()
         : (async () => {
+            // Imported here so that a build with no database never pulls in the driver.
+            const { PostgresRepository } = await import('../db/postgres');
             const repository = PostgresRepository.fromUrl(url);
             await repository.migrate();
             if ((await repository.countNotes()) === 0) {
@@ -50,5 +55,5 @@ export function describeStore(env: EnvLike = process.env): string {
 }
 
 export function resolveExtractor(env: EnvLike = process.env): Extractor {
-  return selectExtractor(env);
+  return selectExtractor(env, isDemoMode(env));
 }

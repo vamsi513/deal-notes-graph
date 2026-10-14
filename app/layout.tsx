@@ -7,7 +7,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'deal notes graph',
   description:
-    'Prototype that extracts CRM facts from synthetic notes and shows each fact beside its source sentence.',
+    'Prototype that extracts CRM facts from synthetic sales notes and shows each fact beside the source sentence it was quoted from. Not a production CRM.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -20,8 +20,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <header className="topbar">
           <h1>deal notes graph</h1>
           <nav aria-label="Main">
-            <Link href="/">Notes</Link>
+            <Link href="/">Demo</Link>
+            <Link href="/notes">Notes</Link>
             <Link href="/deals">Deals</Link>
+            <Link href="/results">Results</Link>
+            <Link href="/playground">GraphQL</Link>
           </nav>
         </header>
         <main id="main" className="shell">
